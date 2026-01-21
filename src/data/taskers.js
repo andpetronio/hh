@@ -84,15 +84,15 @@ export const taskers = [
   },
 ];
 
-export function getTaskerById(id: string) {
+export function getTaskerById(id) {
   return taskers.find(t => t.id === id);
 }
 
-export function getTaskersByCategory(category: string) {
+export function getTaskersByCategory(category) {
   return taskers.filter(t => t.category === category);
 }
 
-export function searchTaskers(query: string) {
+export function searchTaskers(query) {
   const lowerQuery = query.toLowerCase();
   return taskers.filter(t => 
     t.category.toLowerCase().includes(lowerQuery) ||
