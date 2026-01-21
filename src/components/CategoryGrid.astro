@@ -1,0 +1,30 @@
+---
+import { categories } from '../data/taskers';
+
+interface Props {
+  t: any;
+  locale: string;
+}
+
+const { t, locale } = Astro.props;
+const baseUrl = locale === 'es' ? '' : '/pt-BR';
+---
+
+<div class="mb-12">
+  <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 font-serif">
+    {t.categories.title}
+  </h2>
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+    {categories.map((category) => (
+      <a
+        href={`${baseUrl}/browse?category=${category.id}`}
+        class="bg-white rounded-xl p-6 border-2 border-gray-200 hover:border-[#E07A5F] hover:shadow-lg transition-all group"
+      >
+        <div class="text-4xl mb-3">{category.icon}</div>
+        <h3 class="font-semibold text-gray-900 group-hover:text-[#E07A5F] transition-colors">
+          {t.categories[category.id]}
+        </h3>
+      </a>
+    ))}
+  </div>
+</div>
