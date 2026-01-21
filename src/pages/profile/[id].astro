@@ -1,0 +1,176 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import AdBanner from '../../components/AdBanner.astro';
+import { getTranslations } from '../../i18n';
+import { getTaskerById } from '../../data/taskers';
+
+const { id } = Astro.params;
+const locale = 'es';
+const t = getTranslations(locale);
+
+const taskerData = getTaskerById(id || '');
+if (!taskerData) {
+  return Astro.redirect('/browse');
+}
+
+const tasker = {
+  ...taskerData,
+  name: t.taskers[taskerData.nameKey].name,
+  bio: t.taskers[taskerData.nameKey].bio,
+  skills: t.taskers[taskerData.nameKey].skills,
+  availability: t.availability[
+    ['monSat', 'tueSun', 'monFri', 'monSat', 'flexible', 'twentyFourSeven'][taskerData.id - 1]
+  ]
+};
+
+const reviews = [
+  { name: 'John D.', rating: 5, date: 'hace 2 días', text: t.reviews.john.text },
+  { name: 'Sarah M.', rating: 5, date: 'hace 1 semana', text: t.reviews.sarah.text },
+  { name: 'Michael R.', rating: 4, date: 'hace 2 semanas', text: t.reviews.michael.text },
+];
+---
+
+<Layout 
+  title={`${tasker.name} - HomeHelper`}
+  description={tasker.bio}
+  locale={locale}
+>
+  <Header locale={locale} />
+
+  <div class="min-h-screen bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <a
+        href="/browse"
+        class="flex items-center text-gray-600 hover:text-gray-900 mb-6 font-medium"
+      >
+        ← {t.profile.backToResults}
+      </a>
+
+      <div class="bg-white rounded-xl overflow-hidden border border-gray-200 mb-6">
+        <div class="bg-gradient-to-r from-[#E07A5F] to-[#F4A261] p-8 sm:p-12">
+          <div class="flex flex-col sm:flex-row items-center sm:items-start">
+            <div class="w-24 h-24 sm:w-32 sm:h-32 bg-white rounded-full flex items-center justify-center text-6xl sm:text-7xl shadow-lg mb-4 sm:mb-0">
+              {tasker.image}
+            </div>
+            <div class="sm:ml-8 text-center sm:text-left flex-1">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h1 class="text-3xl sm:text-4xl font-bold text-white mb-2 font-serif">
+                    {tasker.name}
+                  </h1>
+                  <div class="flex items-center justify-center sm:justify-start text-white text-opacity-90 mb-3">
+                    <svg class="w-4.5 h-4.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    {tasker.location}
+                  </div>
+                </div>
+                {tasker.verified && (
+                  <div class="bg-white bg-opacity-20 text-white px-4 py-2 rounded-full text-sm font-medium flex items-center justify-center sm:justify-start backdrop-blur-sm">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                    </svg>
+                    {t.profile.verifiedPro}
+                  </div>
+                )}
+              </div>
+              <div class="flex items-center justify-center sm:justify-start space-x-6 mt-4">
+                <div class="flex items-center text-white">
+                  <svg class="w-5 h-5 fill-white mr-1" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                  <span class="text-2xl font-bold">{tasker.rating}</span>
+                  <span class="ml-1 text-white text-opacity-80">({tasker.reviews} {t.profile.reviews})</span>
+                </div>
+                <div class="text-white text-opacity-80">•</div>
+                <div class="text-white text-opacity-90">
+                  {tasker.experience} años {t.browse.experience}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+            <div class="bg-gray-50 rounded-lg p-4">
+              <div class="text-sm text-gray-600 mb-1">{t.profile.hourlyRate}</div>
+              <div class="text-3xl font-bold text-gray-900">${tasker.hourlyRate}</div>
+            </div>
+            <div class="bg-gray-50 rounded-lg p-4">
+              <div class="text-sm text-gray-600 mb-1">{t.profile.availability}</div>
+              <div class="text-lg font-semibold text-gray-900">{tasker.availability}</div>
+            </div>
+          </div>
+
+          <div class="mb-8">
+            <h2 class="text-xl font-bold text-gray-900 mb-3">{t.profile.about}</h2>
+            <p class="text-gray-700 leading-relaxed">{tasker.bio}</p>
+          </div>
+
+          <div class="mb-8">
+            <h2 class="text-xl font-bold text-gray-900 mb-3">{t.profile.skills}</h2>
+            <div class="flex flex-wrap gap-3">
+              {tasker.skills.map((skill) => (
+                <span class="bg-[#E07A5F] bg-opacity-10 text-[#E07A5F] px-4 py-2 rounded-lg font-medium">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <AdBanner locale={locale} />
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <button class="bg-[#E07A5F] text-white px-6 py-4 rounded-lg font-bold text-lg hover:bg-[#d46c51] transition-colors flex items-center justify-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+              {t.profile.callNow}
+            </button>
+            <button class="bg-white border-2 border-[#E07A5F] text-[#E07A5F] px-6 py-4 rounded-lg font-bold text-lg hover:bg-[#FFF8F3] transition-colors flex items-center justify-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              {t.profile.sendMessage}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-gray-200 p-6 sm:p-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 font-serif">
+          {t.profile.recentReviews}
+        </h2>
+        <div class="space-y-6">
+          {reviews.map((review) => (
+            <div class="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
+              <div class="flex items-start justify-between mb-2">
+                <div>
+                  <div class="font-semibold text-gray-900">{review.name}</div>
+                  <div class="flex items-center mt-1">
+                    {[...Array(5)].map((_, i) => (
+                      <svg
+                        class:list={[
+                          "w-4 h-4",
+                          i < review.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"
+                        ]}
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                      </svg>
+                    ))}
+                  </div>
+                </div>
+                <div class="text-sm text-gray-500">{review.date}</div>
+              </div>
+              <p class="text-gray-700">{review.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
