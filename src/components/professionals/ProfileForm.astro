@@ -1,0 +1,27 @@
+---
+import BasicInfoFields from "./BasicInfoFields.astro";
+import LocationFields from "./LocationFields.astro";
+import ServicesFields from "./ServicesFields.astro";
+import ContactFields from "./ContactFields.astro";
+
+interface Props {
+  t: any;
+}
+const { t } = Astro.props;
+---
+
+<form class="space-y-12">
+  <BasicInfoFields t={t} />
+  <LocationFields t={t} />
+  <ServicesFields t={t} />
+  <ContactFields t={t} />
+
+  <div class="pt-6 border-t border-gray-200">
+    <button
+      type="submit"
+      class="w-full sm:w-auto bg-[#E07A5F] text-white px-5 py-2 rounded-lg font-medium hover:bg-[#d46c51] transition-colors"
+    >
+      {t.header.signUp}
+    </button>
+  </div>
+</form>

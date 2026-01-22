@@ -70,8 +70,10 @@ export const es = {
     about: 'Acerca de',
     skills: 'Habilidades y Especialidades',
     callNow: 'Llamar Ahora',
+    contacts: 'Contactos',
     sendMessage: 'Enviar Mensaje',
-    recentReviews: 'Reseñas Recientes'
+    recentReviews: 'Reseñas Recientes',
+    location: 'Ubicación'
   },
   
   // Ad
@@ -144,5 +146,28 @@ export const es = {
     weeksAgo: 'hace {weeks} semana(s)',
     today: 'hoy',
     yesterday: 'ayer'
+  },
+
+  professionals: {
+    strings: {
+      especialty: "Especialidad",
+      yearsOfExperience: "Años de Experiencia",
+      services: "Servicios",
+      hourlyRate: "Tarifa por Hora",
+      subtitle: "Únete a nuestra comunidad de profesionales verificados y conecta con clientes que necesitan tus servicios."
+    },
+    placeholders: {
+      firstName: "Juan",
+      lastName: "Pérez",
+      description: "Contá brevemente tu experiencia y servicios",
+      yearsOfExperience: "3",
+      region: "Provincia o estado",
+      city: "Ciudad",
+      selectEspecialty: "Seleccioná una Especialidad",
+      services: "Ej: reparaciones, instalaciones, mantenimiento",
+      hourlyRateExample: "Ej: 2500",
+      whatsapp: "+54 9 11 1234567",
+      email: "correo@email.com"
+    },
   }
 };

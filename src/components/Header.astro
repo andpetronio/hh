@@ -44,11 +44,12 @@ const otherLocaleUrl = locale === "es" ? "/pt-BR" : "/";
         >
           {t.header.howItWorks}
         </a>
-        <button
+        <a
+          href={baseUrl + "/professionals/create"}
           class="text-gray-700 hover:text-gray-900 font-medium transition-colors"
         >
           {t.header.becomeTasker}
-        </button>
+        </a>
       </nav>
 
       <div class="hidden md:flex items-center space-x-4">
@@ -134,11 +135,12 @@ const otherLocaleUrl = locale === "es" ? "/pt-BR" : "/";
       >
         {t.header.howItWorks}
       </a>
-      <button
+      <a
+        href={baseUrl + "/professionals/create"}
         class="block w-full text-left text-gray-700 hover:text-gray-900 font-medium py-2"
       >
         {t.header.becomeTasker}
-      </button>
+      </a>
       <div class="pt-3 border-t border-gray-200 space-y-2">
         <div class="flex items-center space-x-2 py-2">
           <svg

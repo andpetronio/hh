@@ -70,8 +70,10 @@ export const ptBR = {
     about: 'Sobre',
     skills: 'Habilidades e Especialidades',
     callNow: 'Ligar Agora',
+    contacts: 'Contatos',
     sendMessage: 'Enviar Mensagem',
-    recentReviews: 'Avaliações Recentes'
+    recentReviews: 'Avaliações Recentes',
+    location: 'Localização'
   },
   
   // Ad
@@ -144,5 +146,29 @@ export const ptBR = {
     weeksAgo: 'há {weeks} semana(s)',
     today: 'hoje',
     yesterday: 'ontem'
+  },
+
+  professionals: {
+    strings: {
+      especialty: "Especialidade",
+      yearsOfExperience: "Años de Experiência",
+      services: "Serviços",
+      hourlyRate: "Valor por Hora",
+      subtitle: "Junte-se à nossa comunidade de profissionais verificados e conecte-se com clientes que precisam dos seus serviços."
+    },
+    placeholders: {
+      firstName: "João",
+      lastName: "Silva",
+      description: "Conte brevemente sua experiência e serviços",
+      yearsOfExperience: "3",
+      region: "Estado ou província",
+      city: "Cidade",
+      selectEspecialty: "Selecione uma Especialidade",
+      services: "Ex: reparos, instalações, manutenção",
+      hourlyRate: "Valor por hora",
+      hourlyRateExample: "Ex: 50",
+      whatsapp: "+55 11 91234-5678",
+      email: "email@exemplo.com"
+    },
   }
 };

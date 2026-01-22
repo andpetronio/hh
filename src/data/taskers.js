@@ -11,7 +11,7 @@ export const categories = [
 
 export const taskers = [
   {
-    id: '1',
+    id: 1,
     nameKey: 'maria',
     category: 'plumbing',
     rating: 4.9,
@@ -23,7 +23,7 @@ export const taskers = [
     image: '👩‍🔧',
   },
   {
-    id: '2',
+    id: 2,
     nameKey: 'james',
     category: 'electrical',
     rating: 4.8,
@@ -35,7 +35,7 @@ export const taskers = [
     image: '👨‍🔧',
   },
   {
-    id: '3',
+    id: 3,
     nameKey: 'sarah',
     category: 'gardening',
     rating: 5.0,
@@ -47,7 +47,7 @@ export const taskers = [
     image: '👩‍🌾',
   },
   {
-    id: '4',
+    id: 4,
     nameKey: 'david',
     category: 'carpentry',
     rating: 4.7,
@@ -59,7 +59,7 @@ export const taskers = [
     image: '👨‍🏭',
   },
   {
-    id: '5',
+    id: 5,
     nameKey: 'emma',
     category: 'childcare',
     rating: 4.9,
@@ -71,7 +71,7 @@ export const taskers = [
     image: '👩‍👧',
   },
   {
-    id: '6',
+    id: 6,
     nameKey: 'robert',
     category: 'eldercare',
     rating: 4.8,

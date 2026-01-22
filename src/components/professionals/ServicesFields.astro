@@ -1,0 +1,76 @@
+---
+import { categories } from "../../data/taskers";
+
+const { t } = Astro.props;
+const p = t.professionals.placeholders;
+const s = t.professionals.strings;
+---
+
+<section class="space-y-6">
+  <h2 class="text-xl font-semibold text-gray-900">
+    {t.profile.skills}
+  </h2>
+
+  <!-- Especialidad + Experiencia -->
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <!-- Especialidad -->
+    <div class="sm:col-span-2">
+      <label class="block text-sm text-gray-700 mb-1">
+        {s.especialty}
+      </label>
+      <select
+        name="category"
+        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-gray-900 focus:outline-none"
+      >
+        <option value="">{p.selectEspecialty}</option>
+        {
+          categories.map((cat) => (
+            <option value={cat.id}>{t.categories[cat.id]}</option>
+          ))
+        }
+      </select>
+    </div>
+
+    <!-- Años de experiencia -->
+    <div>
+      <label class="block text-sm text-gray-700 mb-1">
+        {s.yearsOfExperience}
+      </label>
+      <input
+        type="number"
+        name="years_of_experience"
+        min="0"
+        placeholder={p.yearsOfExperience}
+        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-gray-900 focus:outline-none"
+      />
+    </div>
+  </div>
+
+  <!-- Servicios ofrecidos -->
+  <div>
+    <label class="block text-sm text-gray-700 mb-1">
+      {s.services}
+    </label>
+    <textarea
+      name="services"
+      rows="3"
+      placeholder={p.services}
+      class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-gray-900 focus:outline-none"
+    ></textarea>
+  </div>
+
+  <!-- Tarifa por hora -->
+  <div class="max-w-xs">
+    <label class="block text-sm text-gray-700 mb-1">
+      {s.hourlyRate}
+    </label>
+    <input
+      type="number"
+      name="hourly_rate"
+      min="0"
+      step="1"
+      placeholder={p.hourlyRateExample}
+      class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-gray-900 focus:outline-none"
+    />
+  </div>
+</section>
