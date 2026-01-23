@@ -16,13 +16,13 @@ const s = t.specialists.strings;
     <!-- Especialidad -->
     <div class="sm:col-span-2">
       <label class="block text-sm text-gray-700 mb-1">
-        {s.especialty}
+        {s.specialty}
       </label>
       <select
-        name="category"
+        name="specialty"
         class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-gray-900 focus:outline-none"
       >
-        <option value="">{p.selectEspecialty}</option>
+        <option value="">{p.selectSpecialty}</option>
         {
           trades.map((trade) => (
             <option value={trade.id}>{t.trades[trade.id]}</option>

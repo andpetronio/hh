@@ -45,7 +45,7 @@ homehelper-v5/
 │   │   └── AdBanner.astro         # Ad placements
 │   ├── pages/
 │   │   ├── index.astro            # Home (Spanish)
-│   │   ├── browse.astro           # Browse professionals
+│   │   ├── browse.astro           # Browse specialists
 │   │   ├── profile/[id].astro     # Dynamic profiles
 │   │   └── pt-BR/                 # Portuguese versions
 │   ├── data/
@@ -144,7 +144,7 @@ colors: {
 }
 ```
 
-### Add Professionals
+### Add specialists
 
 Edit `src/data/taskers.js`:
 
@@ -208,14 +208,14 @@ taskers: {
 
 ### Spanish (Default):
 - `/` - Home page
-- `/browse` - All professionals
+- `/browse` - All specialists
 - `/browse?category=plumbing` - Filter by category
 - `/browse?q=search` - Search results
 - `/profile/1` - Professional profile
 
 ### Portuguese:
 - `/pt-BR` - Home page
-- `/pt-BR/browse` - All professionals
+- `/pt-BR/browse` - All specialists
 - `/pt-BR/browse?category=plumbing` - Filter by category
 - `/pt-BR/profile/1` - Professional profile
 

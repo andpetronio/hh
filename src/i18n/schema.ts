@@ -24,13 +24,13 @@ export interface Translations {
     eldercare: string;
     cleaning: string;
     painting: string;
-  },
+  };
 
   stats: {
     taskers: string;
     completed: string;
     rating: string;
-  },
+  };
 
   howItWorks: {
     title: string;
@@ -40,7 +40,7 @@ export interface Translations {
     step2Desc: string;
     step3Title: string;
     step3Desc: string;
-  },
+  };
 
   browse: {
     allTaskers: string;
@@ -52,7 +52,7 @@ export interface Translations {
     noResults: string;
     noResultsDesc: string;
     viewAll: string;
-  },
+  };
 
   profile: {
     backToResults: string;
@@ -67,47 +67,47 @@ export interface Translations {
     sendMessage: string;
     recentReviews: string;
     location: string;
-  },
+  };
 
   ad: {
     sponsored: string;
     title: string;
     subtitle: string;
     cta: string;
-  },
+  };
 
   taskers: {
     maria: {
       name: string;
       bio: string;
       skills: string[];
-    },
+    };
     james: {
       name: string;
       bio: string;
       skills: string[];
-    },
+    };
     sarah: {
       name: string;
       bio: string;
       skills: string[];
-    },
+    };
     david: {
       name: string;
       bio: string;
       skills: string[];
-    },
+    };
     emma: {
       name: string;
       bio: string;
       skills: string[];
-    },
+    };
     robert: {
       name: string;
       bio: string;
       skills: string[];
-    }
-  },
+    };
+  };
 
   availability: {
     monSat: string;
@@ -115,35 +115,35 @@ export interface Translations {
     monFri: string;
     flexible: string;
     twentyFourSeven: string;
-  },
+  };
 
   reviews: {
     john: {
       text: string;
-    },
+    };
     sarah: {
       text: string;
-    },
+    };
     michael: {
       text: string;
-    }
-  },
+    };
+  };
 
   time: {
     daysAgo: string;
     weeksAgo: string;
     today: string;
     yesterday: string;
-  },
+  };
 
   specialists: {
     strings: {
-      especialty: string;
+      specialty: string;
       yearsOfExperience: string;
       services: string;
       hourlyRate: string;
       subtitle: string;
-    },
+    };
 
     placeholders: {
       firstName: string;
@@ -152,12 +152,12 @@ export interface Translations {
       yearsOfExperience: string;
       region: string;
       city: string;
-      selectEspecialty: string;
+      selectSpecialty: string;
       services: string;
       hourlyRate: string;
       hourlyRateExample: string;
       whatsapp: string;
       email: string;
-    },
+    };
   };
 }

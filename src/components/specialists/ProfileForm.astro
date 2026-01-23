@@ -1,0 +1,87 @@
+---
+import BasicInfoFields from "./BasicInfoFields.astro";
+import LocationFields from "./LocationFields.astro";
+import ServicesFields from "./ServicesFields.astro";
+import ContactFields from "./ContactFields.astro";
+
+interface Props {
+  t: any;
+}
+const { t } = Astro.props;
+---
+
+<form class="space-y-12" id="specialists-form">
+  <BasicInfoFields t={t} />
+  <LocationFields t={t} />
+  <ServicesFields t={t} />
+  <ContactFields t={t} />
+
+  <div class="pt-6 border-t border-gray-200">
+    <button
+      type="submit"
+      class="w-full sm:w-auto bg-[#E07A5F] text-white px-5 py-2 rounded-lg font-medium hover:bg-[#d46c51] transition-colors font-sans"
+    >
+      {t.header.signUp}
+    </button>
+  </div>
+</form>
+
+<script is:inline>
+  /**
+   * @typedef {Object} SpecialistsDraft
+   * @property {string} firstName
+   * @property {string} lastName
+   * @property {string} specialty
+   * @property {number|null} yearsOfExperience
+   * @property {string} services
+   * @property {number|null} hourlyRate
+   * @property {string} country
+   * @property {string} region
+   * @property {string} city
+   */
+
+  (function () {
+    const form = document.getElementById("specialists-form");
+
+    if (!(form instanceof HTMLFormElement)) {
+      console.error("Form not found");
+      return;
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const fd = new FormData(form);
+
+      // 👇 obtener LABEL visible del select
+      const specialtySelect = form.querySelector('select[name="specialty"]');
+
+      const specialtyLabel =
+        specialtySelect && specialtySelect.selectedIndex >= 0
+          ? specialtySelect.options[specialtySelect.selectedIndex].text
+          : "";
+
+      /** @type {SpecialistsDraft} */
+      const draft = {
+        firstName: String(fd.get("first_name") ?? ""),
+        lastName: String(fd.get("last_name") ?? ""),
+        description: String(fd.get("description") ?? ""),
+        country: String(fd.get("country") ?? ""),
+        region: String(fd.get("region") ?? ""),
+        city: String(fd.get("city") ?? ""),
+        specialty: specialtyLabel,
+        yearsOfExperience: fd.get("years_of_experience")
+          ? Number(fd.get("years_of_experience"))
+          : null,
+        services: String(fd.get("services") ?? ""),
+        hourlyRate: fd.get("hourly_rate")
+          ? Number(fd.get("hourly_rate"))
+          : null,
+      };
+
+      sessionStorage.setItem("specialists-draft", JSON.stringify(draft));
+
+      window.location.href = "/specialists/preview";
+    });
+  })();
+</script>
