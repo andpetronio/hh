@@ -1,23 +1,22 @@
-export const ptBR = {
-  // Header
+import type { Translations } from "./schema";
+
+const ptBR: Translations = {
   header: {
-    browseTaskers: 'Explorar Profissionais',
+    browseTaskers: 'Explorar Especialistas',
     howItWorks: 'Como Funciona',
-    becomeTasker: 'Seja um Profissional',
+    becomeTasker: 'Seja um Especialista',
     signIn: 'Entrar',
     signUp: 'Cadastrar-se'
   },
   
-  // Hero
   hero: {
-    title1: 'Encontre profissionais confiáveis',
+    title1: 'Encontre especialistas confiáveis',
     title2: 'para cada tarefa doméstica',
-    subtitle: 'Conecte-se com profissionais verificados em encanamento, jardinagem, cuidados infantis e muito mais',
-    searchPlaceholder: 'Buscar serviços ou profissionais...'
+    subtitle: 'Conecte-se com especialistas verificados em encanamento, jardinagem, cuidados infantis e muito mais',
+    searchPlaceholder: 'Buscar serviços ou especialistas...'
   },
   
-  // Categories
-  categories: {
+  trades: {
     title: 'Serviços Populares',
     plumbing: 'Encanamento',
     electrical: 'Eletricidade',
@@ -29,41 +28,37 @@ export const ptBR = {
     painting: 'Pintura'
   },
   
-  // Stats
   stats: {
-    taskers: 'Profissionais Verificados',
+    taskers: 'Especialistas Verificados',
     completed: 'Tarefas Concluídas',
     rating: 'Avaliação Média'
   },
   
-  // How it works
   howItWorks: {
     title: 'Como Funciona',
     step1Title: '1. Buscar e Explorar',
-    step1Desc: 'Encontre o profissional perfeito para suas necessidades navegando por categorias ou buscando diretamente',
+    step1Desc: 'Encontre o especialista perfeito para suas necessidades navegando por categorias ou buscando diretamente',
     step2Title: '2. Ver Perfis',
     step2Desc: 'Confira avaliações, comentários e experiência para tomar uma decisão informada',
     step3Title: '3. Entrar em Contato',
-    step3Desc: 'Entre em contato com os profissionais diretamente e agende seu serviço conforme sua conveniência'
+    step3Desc: 'Entre em contato com os especialistas diretamente e agende seu serviço conforme sua conveniência'
   },
   
-  // Browse
   browse: {
-    allTaskers: 'Todos os Profissionais',
+    allTaskers: 'Todos os Especialistas',
     searchResults: 'Resultados da Busca',
     clearFilter: 'Limpar filtro',
     verified: 'Verificado',
     perHour: 'por hora',
     experience: 'experiência',
-    noResults: 'Nenhum profissional encontrado',
+    noResults: 'Nenhum especialista encontrado',
     noResultsDesc: 'Tente ajustar sua busca ou filtros',
-    viewAll: 'Ver Todos os Profissionais'
+    viewAll: 'Ver Todos os Especialistas'
   },
   
-  // Profile
   profile: {
     backToResults: 'Voltar aos resultados',
-    verifiedPro: 'Profissional Verificado',
+    verifiedPro: 'Especialista Verificado',
     reviews: 'avaliações',
     hourlyRate: 'Valor por Hora',
     availability: 'Disponibilidade',
@@ -76,7 +71,6 @@ export const ptBR = {
     location: 'Localização'
   },
   
-  // Ad
   ad: {
     sponsored: 'Patrocinado',
     title: 'Ferramentas e Suprimentos Premium',
@@ -84,7 +78,6 @@ export const ptBR = {
     cta: 'Comprar Agora'
   },
   
-  // Taskers data
   taskers: {
     maria: {
       name: 'Maria Rodriguez',
@@ -118,7 +111,6 @@ export const ptBR = {
     }
   },
   
-  // Availability
   availability: {
     monSat: 'Seg-Sáb, 8h-18h',
     tueSun: 'Ter-Dom, 9h-19h',
@@ -127,7 +119,6 @@ export const ptBR = {
     twentyFourSeven: 'Seg-Dom, 24/7'
   },
   
-  // Reviews
   reviews: {
     john: {
       text: 'Excelente trabalho! Muito profissional e concluiu o trabalho antes do prazo.'
@@ -140,7 +131,6 @@ export const ptBR = {
     }
   },
   
-  // Time
   time: {
     daysAgo: 'há {days} dias',
     weeksAgo: 'há {weeks} semana(s)',
@@ -148,7 +138,7 @@ export const ptBR = {
     yesterday: 'ontem'
   },
 
-  professionals: {
+  specialists: {
     strings: {
       especialty: "Especialidade",
       yearsOfExperience: "Años de Experiência",
@@ -163,7 +153,7 @@ export const ptBR = {
       yearsOfExperience: "3",
       region: "Estado ou província",
       city: "Cidade",
-      selectEspecialty: "Selecione uma Especialidade",
+      selectEspecialty: "Selecione uma especialidade",
       services: "Ex: reparos, instalações, manutenção",
       hourlyRate: "Valor por hora",
       hourlyRateExample: "Ex: 50",
@@ -172,3 +162,5 @@ export const ptBR = {
     },
   }
 };
+
+export default ptBR;

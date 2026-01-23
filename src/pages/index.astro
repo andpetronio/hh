@@ -1,42 +1,43 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import CategoryGrid from '../components/CategoryGrid.astro';
-import AdBanner from '../components/AdBanner.astro';
-import Stats from '../components/Stats.astro';
-import HowItWorks from '../components/HowItWorks.astro';
-import { getTranslations } from '../i18n';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import TradeGrid from "../components/TradeGrid.astro";
+import AdBanner from "../components/AdBanner.astro";
+import Stats from "../components/Stats.astro";
+import HowItWorks from "../components/HowItWorks.astro";
 
-const locale = 'es';
+import { getTranslations } from "../i18n";
+import { resolveRequestLocale } from "../i18n/resolveRequestLocale";
+// 🌍 idioma
+const locale = resolveRequestLocale(Astro.request);
 const t = getTranslations(locale);
 ---
 
-<Layout 
-  title="HomeHelper - Encuentra profesionales para tu hogar" 
+<Layout
+  title="HomeHelper - Encuentra profesionales para tu hogar"
   description="Conecta con profesionales verificados en plomería, jardinería, cuidado infantil y más"
   locale={locale}
 >
-  <Header locale={locale} />
+  <!-- Header -->
+  <Header t={t} locale={locale} />
 
-  <div class="min-h-screen">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
-      
-      <!-- Hero Section -->
-      <Hero t={t} locale={locale} />
+  <main class="min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-16 space-y-20">
+      <!-- Hero -->
+      <Hero t={t} />
 
-      <!-- Categories Grid -->
-      <CategoryGrid t={t} locale={locale} />
+      <!-- Categorías -->
+      <TradeGrid t={t} />
 
-      <!-- Ad Banner -->
-      <AdBanner locale={locale} />
+      <!-- Banner publicitario -->
+      <AdBanner t={t} />
 
-      <!-- Stats Section -->
+      <!-- Estadísticas -->
       <Stats t={t} />
 
-      <!-- How It Works -->
+      <!-- Cómo funciona -->
       <HowItWorks t={t} />
-
     </div>
-  </div>
+  </main>
 </Layout>

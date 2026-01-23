@@ -1,23 +1,23 @@
-export const es = {
-  // Header
+import type { Translations } from "./schema";
+
+const es: Translations = {
+
   header: {
-    browseTaskers: 'Explorar Profesionales',
+    browseTaskers: 'Explorar Especialistas',
     howItWorks: 'Cómo Funciona',
-    becomeTasker: 'Ser Profesional',
+    becomeTasker: 'Ser Especialista',
     signIn: 'Iniciar Sesión',
     signUp: 'Registrarse'
   },
   
-  // Hero
   hero: {
-    title1: 'Encuentra profesionales de confianza',
+    title1: 'Encuentra especialistas de confianza',
     title2: 'para cada tarea del hogar',
-    subtitle: 'Conecta con profesionales verificados en plomería, jardinería, cuidado infantil y más',
-    searchPlaceholder: 'Buscar servicios o profesionales...'
+    subtitle: 'Conecta con especialistas verificados en plomería, jardinería, cuidado infantil y más',
+    searchPlaceholder: 'Buscar servicios o especialistas...'
   },
   
-  // Categories
-  categories: {
+  trades: {
     title: 'Servicios Populares',
     plumbing: 'Plomería',
     electrical: 'Electricidad',
@@ -29,46 +29,42 @@ export const es = {
     painting: 'Pintura'
   },
   
-  // Stats
   stats: {
-    taskers: 'Profesionales Verificados',
+    taskers: 'Especialistas Verificados',
     completed: 'Tareas Completadas',
     rating: 'Calificación Promedio'
   },
   
-  // How it works
   howItWorks: {
     title: 'Cómo Funciona',
     step1Title: '1. Buscar y Explorar',
-    step1Desc: 'Encuentra el profesional perfecto para tus necesidades navegando por categorías o buscando directamente',
+    step1Desc: 'Encuentra el/la especialista perfecto/a para tus necesidades navegando por categorías o buscando directamente',
     step2Title: '2. Ver Perfiles',
     step2Desc: 'Revisa calificaciones, reseñas y experiencia para tomar una decisión informada',
     step3Title: '3. Contactar',
-    step3Desc: 'Contacta a los profesionales directamente y agenda tu servicio a tu conveniencia'
+    step3Desc: 'Contacta a el/la especialista directamente y agenda el servicio a tu conveniencia'
   },
   
-  // Browse
   browse: {
-    allTaskers: 'Todos los Profesionales',
+    allTaskers: 'Todos los especialistas',
     searchResults: 'Resultados de Búsqueda',
     clearFilter: 'Limpiar filtro',
     verified: 'Verificado',
     perHour: 'por hora',
     experience: 'experiencia',
-    noResults: 'No se encontraron profesionales',
+    noResults: 'No se encontraron especialistas',
     noResultsDesc: 'Intenta ajustar tu búsqueda o filtros',
-    viewAll: 'Ver Todos los Profesionales'
+    viewAll: 'Ver todos'
   },
   
-  // Profile
   profile: {
     backToResults: 'Volver a resultados',
-    verifiedPro: 'Profesional Verificado',
+    verifiedPro: 'Especialista Verificado/a',
     reviews: 'reseñas',
     hourlyRate: 'Tarifa por Hora',
     availability: 'Disponibilidad',
     about: 'Acerca de',
-    skills: 'Habilidades y Especialidades',
+    skills: 'Habilidades y Servicios',
     callNow: 'Llamar Ahora',
     contacts: 'Contactos',
     sendMessage: 'Enviar Mensaje',
@@ -76,7 +72,6 @@ export const es = {
     location: 'Ubicación'
   },
   
-  // Ad
   ad: {
     sponsored: 'Patrocinado',
     title: 'Herramientas y Suministros Premium',
@@ -84,7 +79,6 @@ export const es = {
     cta: 'Comprar Ahora'
   },
   
-  // Taskers data
   taskers: {
     maria: {
       name: 'María Rodríguez',
@@ -118,7 +112,6 @@ export const es = {
     }
   },
   
-  // Availability
   availability: {
     monSat: 'Lun-Sáb, 8am-6pm',
     tueSun: 'Mar-Dom, 9am-7pm',
@@ -127,7 +120,6 @@ export const es = {
     twentyFourSeven: 'Lun-Dom, 24/7'
   },
   
-  // Reviews
   reviews: {
     john: {
       text: '¡Excelente trabajo! Muy profesional y completó el trabajo antes de lo programado.'
@@ -140,7 +132,6 @@ export const es = {
     }
   },
   
-  // Time
   time: {
     daysAgo: 'hace {days} días',
     weeksAgo: 'hace {weeks} semana(s)',
@@ -148,13 +139,13 @@ export const es = {
     yesterday: 'ayer'
   },
 
-  professionals: {
+  specialists: {
     strings: {
       especialty: "Especialidad",
       yearsOfExperience: "Años de Experiencia",
       services: "Servicios",
       hourlyRate: "Tarifa por Hora",
-      subtitle: "Únete a nuestra comunidad de profesionales verificados y conecta con clientes que necesitan tus servicios."
+      subtitle: "Únete a nuestra comunidad de especialistas verificados y conecta con clientes que necesitan tus servicios."
     },
     placeholders: {
       firstName: "Juan",
@@ -163,11 +154,14 @@ export const es = {
       yearsOfExperience: "3",
       region: "Provincia o estado",
       city: "Ciudad",
-      selectEspecialty: "Seleccioná una Especialidad",
+      selectEspecialty: "Seleccioná una especialidad",
       services: "Ej: reparaciones, instalaciones, mantenimiento",
+      hourlyRate: "Ej: 500",
       hourlyRateExample: "Ej: 2500",
       whatsapp: "+54 9 11 1234567",
       email: "correo@email.com"
     },
   }
 };
+
+export default es;

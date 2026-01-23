@@ -1,9 +1,9 @@
 ---
-import { categories } from "../../data/taskers";
+import { trades } from "../../data/trades";
 
 const { t } = Astro.props;
-const p = t.professionals.placeholders;
-const s = t.professionals.strings;
+const p = t.specialists.placeholders;
+const s = t.specialists.strings;
 ---
 
 <section class="space-y-6">
@@ -24,8 +24,8 @@ const s = t.professionals.strings;
       >
         <option value="">{p.selectEspecialty}</option>
         {
-          categories.map((cat) => (
-            <option value={cat.id}>{t.categories[cat.id]}</option>
+          trades.map((trade) => (
+            <option value={trade.id}>{t.trades[trade.id]}</option>
           ))
         }
       </select>
