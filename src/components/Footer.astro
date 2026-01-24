@@ -1,0 +1,164 @@
+---
+import type { Locale } from "../i18n/locales";
+import type { Translations } from "../i18n/schema";
+
+interface Props {
+  locale: Locale;
+  t: Translations;
+}
+
+const { locale, t } = Astro.props;
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-white border-t border-gray-200 mt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center mb-4">
+          <div
+            class="w-10 h-10 bg-gradient-to-br from-[#E07A5F] to-[#F4A261] rounded-xl flex items-center justify-center"
+          >
+            <span class="text-white text-xl font-bold">M</span>
+          </div>
+          <span class="ml-3 text-xl font-bold text-gray-900 font-serif">
+            Manify
+          </span>
+        </div>
+
+        <p class="text-sm text-gray-600 leading-relaxed">
+          {t.footer.main.slogan}
+        </p>
+      </div>
+
+      <!-- Explorar -->
+      <div>
+        <h4
+          class="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wide"
+        >
+          {t.footer.explore.title}
+        </h4>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a
+              href="/browse"
+              class="text-gray-600 hover:text-[#E07A5F] transition-colors"
+            >
+              {t.header.browseManers}
+            </a>
+          </li>
+          <li>
+            <a
+              href="/#howItWorks"
+              class="text-gray-600 hover:text-[#E07A5F] transition-colors"
+            >
+              {t.header.howItWorks}
+            </a>
+          </li>
+          <li>
+            <a
+              href="/maners/create"
+              class="text-gray-600 hover:text-[#E07A5F] transition-colors"
+            >
+              {t.header.becomeManer}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Soporte -->
+      <div>
+        <h4
+          class="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wide"
+        >
+          {t.footer.support.title}
+        </h4>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a
+              href="#"
+              class="text-gray-600 hover:text-[#E07A5F] transition-colors"
+            >
+              {t.footer.support.helpCenter}
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-gray-600 hover:text-[#E07A5F] transition-colors"
+            >
+              {t.footer.support.termsOfService}
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-gray-600 hover:text-[#E07A5F] transition-colors"
+            >
+              {t.footer.support.privacyPolicy}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Idioma -->
+      <div>
+        <h4
+          class="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wide"
+        >
+          {t.footer.language}
+        </h4>
+
+        <div class="flex gap-2">
+          <button
+            type="button"
+            onclick="setLocale('es')"
+            class={`px-3 py-1 rounded-md text-sm font-medium border transition-colors
+      ${
+        locale === "es"
+          ? "bg-[#E07A5F] text-white border-[#E07A5F]"
+          : "bg-white text-gray-700 border-gray-300 hover:border-[#E07A5F]"
+      }`}
+          >
+            🇪🇸 ES
+          </button>
+
+          <button
+            type="button"
+            onclick="setLocale('pt-BR')"
+            class={`px-3 py-1 rounded-md text-sm font-medium border transition-colors
+      ${
+        locale === "pt-BR"
+          ? "bg-[#E07A5F] text-white border-[#E07A5F]"
+          : "bg-white text-gray-700 border-gray-300 hover:border-[#E07A5F]"
+      }`}
+          >
+            🇧🇷 PT
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="border-t border-gray-200 mt-10 pt-6">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-gray-500">
+          © {year} Manify. {t.subFooter.rights}
+        </p>
+
+        <p class="text-xs text-gray-400">
+          {t.subFooter.withLove}
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.setLocale = function (locale) {
+    document.cookie = `locale=${locale}; path=/; max-age=31536000`;
+    location.reload();
+  };
+</script>

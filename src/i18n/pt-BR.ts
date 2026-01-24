@@ -9,6 +9,31 @@ const ptBR: Translations = {
     signUp: "Cadastrar-se",
   },
 
+  footer: {
+    main: {
+      slogan:
+        "Conectamos pessoas a Maners confiáveis para resolver tarefas domésticas de forma simples e segura.",
+    },
+    explore: {
+      title: "Explorar",
+      browseManers: "Explorar Maners",
+      howItWorks: "Como Funciona",
+      becomeManer: "Seja um Maner",
+    },
+    support: {
+      title: "Suporte",
+      helpCenter: "Central de Ajuda",
+      termsOfService: "Termos de Serviço",
+      privacyPolicy: "Política de Privacidade",
+    },
+    language: "Idioma",
+  },
+
+  subFooter: {
+    rights: "Todos os direitos reservados.",
+    withLove: "Feito com ❤️ para simplificar sua vida",
+  },
+
   hero: {
     title1: "Encontre Maners confiáveis",
     title2: "para cada tarefa doméstica",

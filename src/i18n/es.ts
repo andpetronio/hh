@@ -9,6 +9,31 @@ const es: Translations = {
     signUp: "Registrarse",
   },
 
+  footer: {
+    main: {
+      slogan:
+        "Conectamos personas con Maners confiables para resolver tareas del hogar de forma simple y segura.",
+    },
+    explore: {
+      title: "Explorar",
+      browseManers: "Buscar Maners",
+      howItWorks: "Cómo Funciona",
+      becomeManer: "Ser Maner",
+    },
+    support: {
+      title: "Soporte",
+      helpCenter: "Centro de Ayuda",
+      termsOfService: "Términos de Servicio",
+      privacyPolicy: "Política de Privacidad",
+    },
+    language: "Idioma",
+  },
+
+  subFooter: {
+    rights: "Todos los derechos reservados.",
+    withLove: "Hecho con ❤️ para simplificar tu vida",
+  },
+
   hero: {
     title1: "Encuentra Maners de confianza",
     title2: "para cada tarea del hogar",

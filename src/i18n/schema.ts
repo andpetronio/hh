@@ -7,6 +7,30 @@ export interface Translations {
     signUp: string;
   };
 
+  footer: {
+    main: {
+      slogan: string;
+    };
+    explore: {
+      title: string;
+      browseManers: string;
+      howItWorks: string;
+      becomeManer: string;
+    };
+    support: {
+      title: string;
+      helpCenter: string;
+      termsOfService: string;
+      privacyPolicy: string;
+    };
+    language: string;
+  };
+
+  subFooter: {
+    rights: string;
+    withLove: string;
+  };
+
   hero: {
     title1: string;
     title2: string;

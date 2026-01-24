@@ -1,8 +1,6 @@
 ---
 import type { TradeId } from "../data/trades";
-import type { Locale } from "../i18n/locales";
 
-// import { getClientLocale } from "../i18n/localeStore";
 import { getTranslations } from "../i18n";
 import { resolveRequestLocale } from "../i18n/resolveRequestLocale";
 
@@ -13,6 +11,7 @@ import AdBanner from "../components/AdBanner.astro";
 
 import { trades } from "../data/trades";
 import { maners, getManersByTrade, searchManers } from "../data/maners";
+
 // 🌍 idioma
 const locale = resolveRequestLocale(Astro.request);
 const t = getTranslations(locale);
@@ -47,8 +46,6 @@ else if (typeof searchQuery === "string") {
   description="Encuentra manos hábiles verificados en tu área"
   locale={locale}
 >
-  <Header t={t} locale={locale} />
-
   <main class="min-h-screen">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
       <!-- Header -->
