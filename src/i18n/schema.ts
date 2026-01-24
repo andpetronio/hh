@@ -1,8 +1,8 @@
 export interface Translations {
   header: {
-    browseTaskers: string;
+    browseManers: string;
     howItWorks: string;
-    becomeTasker: string;
+    becomeManer: string;
     signIn: string;
     signUp: string;
   };
@@ -27,7 +27,7 @@ export interface Translations {
   };
 
   stats: {
-    taskers: string;
+    maners: string;
     completed: string;
     rating: string;
   };
@@ -43,7 +43,7 @@ export interface Translations {
   };
 
   browse: {
-    allTaskers: string;
+    allManers: string;
     searchResults: string;
     clearFilter: string;
     verified: string;
@@ -76,7 +76,7 @@ export interface Translations {
     cta: string;
   };
 
-  taskers: {
+  maners: {
     maria: {
       name: string;
       bio: string;
@@ -136,9 +136,9 @@ export interface Translations {
     yesterday: string;
   };
 
-  specialists: {
+  createManers: {
     strings: {
-      specialty: string;
+      trade: string;
       yearsOfExperience: string;
       services: string;
       hourlyRate: string;
@@ -159,5 +159,12 @@ export interface Translations {
       whatsapp: string;
       email: string;
     };
+  };
+
+  previewManers: {
+    title: string;
+    subtitle: string;
+    backButton: string;
+    confirmButton: string;
   };
 }

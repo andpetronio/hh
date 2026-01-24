@@ -2,19 +2,19 @@ import type { Translations } from "./schema";
 
 const es: Translations = {
   header: {
-    browseTaskers: "Explorar Especialistas",
+    browseManers: "Buscar Maners",
     howItWorks: "Cómo Funciona",
-    becomeTasker: "Ser Especialista",
+    becomeManer: "Ser Maner",
     signIn: "Iniciar Sesión",
     signUp: "Registrarse",
   },
 
   hero: {
-    title1: "Encuentra especialistas de confianza",
+    title1: "Encuentra Maners de confianza",
     title2: "para cada tarea del hogar",
     subtitle:
-      "Conecta con especialistas verificados en plomería, jardinería, cuidado infantil y más",
-    searchPlaceholder: "Buscar servicios o especialistas...",
+      "Conecta con Maners verificados/as en plomería, jardinería, cuidado infantil y más",
+    searchPlaceholder: "Buscar servicios o maners...",
   },
 
   trades: {
@@ -30,7 +30,7 @@ const es: Translations = {
   },
 
   stats: {
-    taskers: "Especialistas Verificados",
+    maners: "Maners Verificados/as",
     completed: "Tareas Completadas",
     rating: "Calificación Promedio",
   },
@@ -39,30 +39,30 @@ const es: Translations = {
     title: "Cómo Funciona",
     step1Title: "1. Buscar y Explorar",
     step1Desc:
-      "Encuentra el/la especialista perfecto/a para tus necesidades navegando por categorías o buscando directamente",
+      "Encuentra el/la Maner perfecto/a para tus necesidades navegando por categorías o buscando directamente",
     step2Title: "2. Ver Perfiles",
     step2Desc:
       "Revisa calificaciones, reseñas y experiencia para tomar una decisión informada",
     step3Title: "3. Contactar",
     step3Desc:
-      "Contacta a el/la especialista directamente y agenda el servicio a tu conveniencia",
+      "Contacta al/a la Maner directamente y agenda el servicio a tu conveniencia",
   },
 
   browse: {
-    allTaskers: "Todos los especialistas",
+    allManers: "Todos los Maners",
     searchResults: "Resultados de Búsqueda",
     clearFilter: "Limpiar filtro",
     verified: "Verificado",
     perHour: "por hora",
     experience: "experiencia",
-    noResults: "No se encontraron especialistas",
+    noResults: "No se encontraron Maners",
     noResultsDesc: "Intenta ajustar tu búsqueda o filtros",
     viewAll: "Ver todos",
   },
 
   profile: {
     backToResults: "Volver a resultados",
-    verifiedPro: "Especialista Verificado/a",
+    verifiedPro: "Maner Verificado/a",
     reviews: "reseñas",
     hourlyRate: "Tarifa por Hora",
     availability: "Disponibilidad",
@@ -82,7 +82,7 @@ const es: Translations = {
     cta: "Comprar Ahora",
   },
 
-  taskers: {
+  maners: {
     maria: {
       name: "María Rodríguez",
       bio: "Plomera licenciada especializada en reparaciones residenciales y comerciales. Tiempo de respuesta rápido y calidad garantizada.",
@@ -172,29 +172,37 @@ const es: Translations = {
     yesterday: "ayer",
   },
 
-  specialists: {
+  createManers: {
     strings: {
-      specialty: "Especialidad",
+      trade: "Especialidad",
       yearsOfExperience: "Años de Experiencia",
       services: "Servicios",
       hourlyRate: "Tarifa por Hora",
       subtitle:
-        "Únete a nuestra comunidad de especialistas verificados y conecta con clientes que necesitan tus servicios.",
+        "Únete a nuestra comunidad de Maners verificados y conecta con clientes que necesitan tus servicios.",
     },
     placeholders: {
       firstName: "Juan",
       lastName: "Pérez",
-      description: "Contá brevemente tu experiencia y servicios",
+      description: "Cuenta brevemente tu experiencia y servicios",
       yearsOfExperience: "3",
       region: "Provincia o estado",
       city: "Ciudad",
-      selectSpecialty: "Seleccioná una especialidad",
+      selectSpecialty: "Selecciona una especialidad",
       services: "Ej: reparaciones, instalaciones, mantenimiento",
       hourlyRate: "Ej: 500",
       hourlyRateExample: "Ej: 2500",
       whatsapp: "+54 9 11 1234567",
       email: "correo@email.com",
     },
+  },
+
+  previewManers: {
+    title: "Previsualización del Perfil del Maner",
+    subtitle:
+      "Revisá la información de tu perfil antes de enviarlo para verificación.",
+    backButton: "Volver y Editar",
+    confirmButton: "Confirmar y Enviar",
   },
 };
 

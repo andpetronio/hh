@@ -14,19 +14,19 @@ const t = getTranslations(locale);
 ---
 
 <Layout
-  title={t.header.becomeTasker}
-  description={t.specialists.strings.subtitle}
+  title={t.header.becomeManer}
+  description={t.createManers.strings.subtitle}
   locale={locale}
 >
   <Header locale={locale} t={t} />
 
   <main class="max-w-3xl mx-auto px-4 py-10">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">
-      {t.header.becomeTasker}
+      {t.header.becomeManer}
     </h1>
 
     <p class="text-gray-600 mb-8">
-      {t.specialists.strings.subtitle}
+      {t.createManers.strings.subtitle}
     </p>
 
     <section
@@ -35,9 +35,14 @@ const t = getTranslations(locale);
     >
       <div>
         <h2 class="text-lg font-semibold text-gray-900 mb-2">
-          {t.header.becomeTasker}
+          {t.previewManers.title}
         </h2>
+        <p class="text-gray-600">
+          {t.previewManers.subtitle}
+        </p>
+      </div>
 
+      <div class="flex items-center space-x-4">
         <div class="space-y-1">
           <p class="text-xl font-bold text-gray-900" id="pv-name"></p>
           <p class="text-sm text-gray-600" id="pv-trade"></p>
@@ -55,7 +60,7 @@ const t = getTranslations(locale);
 
       <div>
         <h3 class="text-sm font-semibold text-gray-700 mb-1">
-          {t.specialists.strings.services}
+          {t.createManers.strings.services}
         </h3>
         <p
           class="text-sm text-gray-800 leading-relaxed whitespace-pre-line"
@@ -66,7 +71,7 @@ const t = getTranslations(locale);
 
       <div>
         <h3 class="text-sm font-semibold text-gray-700 mb-1">
-          {t.specialists.strings.yearsOfExperience}
+          {t.createManers.strings.yearsOfExperience}
         </h3>
         <p class="text-sm text-gray-800" id="pv-experience"></p>
       </div>
@@ -75,7 +80,7 @@ const t = getTranslations(locale);
         class="flex items-center justify-between bg-gray-50 rounded-lg px-4 py-3"
       >
         <span class="text-sm text-gray-600">
-          {t.specialists.strings.hourlyRate}
+          {t.createManers.strings.hourlyRate}
         </span>
         <span class="text-lg font-semibold text-gray-900" id="pv-rate"></span>
       </div>
@@ -86,14 +91,14 @@ const t = getTranslations(locale);
         id="back-btn"
         class="px-6 py-3 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50"
       >
-        {t.profile.backToResults}
+        {t.previewManers.backButton}
       </button>
 
       <button
         id="confirm-btn"
         class="px-6 py-3 rounded-lg bg-[#E07A5F] text-white hover:bg-[#d46c51]"
       >
-        {t.header.signUp}
+        {t.previewManers.confirmButton}
       </button>
     </div>
   </main>
@@ -101,12 +106,12 @@ const t = getTranslations(locale);
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const STORAGE_KEY = "specialists-draft";
+    const STORAGE_KEY = "maners-draft";
 
     const raw = sessionStorage.getItem(STORAGE_KEY);
 
     if (!raw) {
-      window.location.href = "/specialists/create";
+      window.location.href = "/maners/create";
       return;
     }
 
@@ -116,7 +121,7 @@ const t = getTranslations(locale);
       console.log(data);
     } catch {
       sessionStorage.removeItem(STORAGE_KEY);
-      window.location.href = "/specialists/create";
+      window.location.href = "/maners/create";
       return;
     }
 
@@ -165,7 +170,7 @@ const t = getTranslations(locale);
       data.hourlyRate != null ? `$${data.hourlyRate} / hora` : "";
 
     document.getElementById("back-btn")?.addEventListener("click", () => {
-      window.location.href = "/specialists/create";
+      window.location.href = "/maners/create";
     });
 
     document.getElementById("confirm-btn")?.addEventListener("click", () => {

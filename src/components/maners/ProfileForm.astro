@@ -10,7 +10,7 @@ interface Props {
 const { t } = Astro.props;
 ---
 
-<form class="space-y-12" id="specialists-form">
+<form class="space-y-12" id="maners-form">
   <BasicInfoFields t={t} />
   <LocationFields t={t} />
   <ServicesFields t={t} />
@@ -28,7 +28,7 @@ const { t } = Astro.props;
 
 <script is:inline>
   /**
-   * @typedef {Object} SpecialistsDraft
+   * @typedef {Object} ManersDraft
    * @property {string} firstName
    * @property {string} lastName
    * @property {string} specialty
@@ -41,7 +41,7 @@ const { t } = Astro.props;
    */
 
   (function () {
-    const form = document.getElementById("specialists-form");
+    const form = document.getElementById("maners-form");
 
     if (!(form instanceof HTMLFormElement)) {
       console.error("Form not found");
@@ -61,7 +61,7 @@ const { t } = Astro.props;
           ? specialtySelect.options[specialtySelect.selectedIndex].text
           : "";
 
-      /** @type {SpecialistsDraft} */
+      /** @type {ManersDraft} */
       const draft = {
         firstName: String(fd.get("first_name") ?? ""),
         lastName: String(fd.get("last_name") ?? ""),
@@ -79,9 +79,9 @@ const { t } = Astro.props;
           : null,
       };
 
-      sessionStorage.setItem("specialists-draft", JSON.stringify(draft));
+      sessionStorage.setItem("maners-draft", JSON.stringify(draft));
 
-      window.location.href = "/specialists/preview";
+      window.location.href = "/maners/preview";
     });
   })();
 </script>

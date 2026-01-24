@@ -8,12 +8,11 @@ import { resolveRequestLocale } from "../i18n/resolveRequestLocale";
 
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
-import TaskerCard from "../components/TaskerCard.astro";
+import ManerCard from "../components/ManerCard.astro";
 import AdBanner from "../components/AdBanner.astro";
 
 import { trades } from "../data/trades";
-import { taskers, getTaskersByTrade, searchTaskers } from "../data/taskers";
-
+import { maners, getManersByTrade, searchManers } from "../data/maners";
 // 🌍 idioma
 const locale = resolveRequestLocale(Astro.request);
 const t = getTranslations(locale);
@@ -24,28 +23,28 @@ const tradeParam = url.searchParams.get("trade");
 const searchQuery = url.searchParams.get("q");
 
 // 👷‍♂️ resultados
-let filteredTaskers = taskers;
-let title = t.browse.allTaskers;
+let filteredManers = maners;
+let title = t.browse.allManers;
 
 // 🔧 filtro por oficio
 if (typeof tradeParam === "string") {
   const trade = tradeParam as TradeId;
-  filteredTaskers = getTaskersByTrade(trade);
+  filteredManers = getManersByTrade(trade);
 
   const tr = trades.find((t) => t.id === trade);
-  title = tr ? t.trades[tr.id] : t.browse.allTaskers;
+  title = tr ? t.trades[tr.id] : t.browse.allManers;
 }
 
 // 🔍 búsqueda
 else if (typeof searchQuery === "string") {
-  filteredTaskers = searchTaskers(searchQuery);
+  filteredManers = searchManers(searchQuery);
   title = t.browse.searchResults;
 }
 ---
 
 <Layout
-  title={`${title} - HomeHelper`}
-  description="Encuentra profesionales verificados en tu área"
+  title={`${title} - Manify`}
+  description="Encuentra manos hábiles verificados en tu área"
   locale={locale}
 >
   <Header t={t} locale={locale} />
@@ -112,20 +111,20 @@ else if (typeof searchQuery === "string") {
       <!-- Cards -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {
-          filteredTaskers.map((tasker) => (
-            <TaskerCard
-              id={tasker.id}
-              name={t.taskers[tasker.nameKey].name}
-              trade={tasker.trade}
-              rating={tasker.rating}
-              reviews={tasker.reviews}
-              hourlyRate={tasker.hourlyRate}
-              location={tasker.location}
-              experience={tasker.experience}
-              verified={tasker.verified}
-              image={tasker.image}
-              bio={t.taskers[tasker.nameKey].bio}
-              skills={t.taskers[tasker.nameKey].skills}
+          filteredManers.map((maner) => (
+            <ManerCard
+              id={maner.id}
+              name={t.maners[maner.nameKey].name}
+              trade={maner.trade}
+              rating={maner.rating}
+              reviews={maner.reviews}
+              hourlyRate={maner.hourlyRate}
+              location={maner.location}
+              experience={maner.experience}
+              verified={maner.verified}
+              image={maner.image}
+              bio={t.maners[maner.nameKey].bio}
+              skills={t.maners[maner.nameKey].skills}
               locale={locale}
               t={t}
             />
@@ -135,7 +134,7 @@ else if (typeof searchQuery === "string") {
 
       <!-- Empty state -->
       {
-        filteredTaskers.length === 0 && (
+        filteredManers.length === 0 && (
           <div class="text-center py-16">
             <div class="text-6xl mb-4">🔍</div>
             <h3 class="text-2xl font-bold text-gray-900 mb-2">

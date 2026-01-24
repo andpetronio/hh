@@ -2,8 +2,8 @@
 import { trades } from "../../data/trades";
 
 const { t } = Astro.props;
-const p = t.specialists.placeholders;
-const s = t.specialists.strings;
+const p = t.createManers.placeholders;
+const s = t.createManers.strings;
 ---
 
 <section class="space-y-6">
@@ -16,7 +16,7 @@ const s = t.specialists.strings;
     <!-- Especialidad -->
     <div class="sm:col-span-2">
       <label class="block text-sm text-gray-700 mb-1">
-        {s.specialty}
+        {s.trade}
       </label>
       <select
         name="specialty"

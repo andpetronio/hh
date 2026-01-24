@@ -2,19 +2,19 @@ import type { Translations } from "./schema";
 
 const ptBR: Translations = {
   header: {
-    browseTaskers: "Explorar Especialistas",
+    browseManers: "Explorar Maners",
     howItWorks: "Como Funciona",
-    becomeTasker: "Seja um Especialista",
+    becomeManer: "Seja um Maner",
     signIn: "Entrar",
     signUp: "Cadastrar-se",
   },
 
   hero: {
-    title1: "Encontre especialistas confiáveis",
+    title1: "Encontre Maners confiáveis",
     title2: "para cada tarefa doméstica",
     subtitle:
-      "Conecte-se com especialistas verificados em encanamento, jardinagem, cuidados infantis e muito mais",
-    searchPlaceholder: "Buscar serviços ou especialistas...",
+      "Conecte-se com Maners verificados em encanamento, jardinagem, cuidados infantis e muito mais",
+    searchPlaceholder: "Buscar serviços ou Maners...",
   },
 
   trades: {
@@ -30,7 +30,7 @@ const ptBR: Translations = {
   },
 
   stats: {
-    taskers: "Especialistas Verificados",
+    maners: "Maners Verificados",
     completed: "Tarefas Concluídas",
     rating: "Avaliação Média",
   },
@@ -39,7 +39,7 @@ const ptBR: Translations = {
     title: "Como Funciona",
     step1Title: "1. Buscar e Explorar",
     step1Desc:
-      "Encontre o especialista perfeito para suas necessidades navegando por categorias ou buscando diretamente",
+      "Encontre o Maner perfeito para suas necessidades navegando por categorias ou buscando diretamente",
     step2Title: "2. Ver Perfis",
     step2Desc:
       "Confira avaliações, comentários e experiência para tomar uma decisão informada",
@@ -49,20 +49,20 @@ const ptBR: Translations = {
   },
 
   browse: {
-    allTaskers: "Todos os Especialistas",
+    allManers: "Todos os Maners",
     searchResults: "Resultados da Busca",
     clearFilter: "Limpar filtro",
     verified: "Verificado",
     perHour: "por hora",
     experience: "experiência",
-    noResults: "Nenhum especialista encontrado",
+    noResults: "Nenhum Maner encontrado",
     noResultsDesc: "Tente ajustar sua busca ou filtros",
-    viewAll: "Ver Todos os Especialistas",
+    viewAll: "Ver Todos os Maners",
   },
 
   profile: {
     backToResults: "Voltar aos resultados",
-    verifiedPro: "Especialista Verificado",
+    verifiedPro: "Maner Verificado",
     reviews: "avaliações",
     hourlyRate: "Valor por Hora",
     availability: "Disponibilidade",
@@ -82,7 +82,7 @@ const ptBR: Translations = {
     cta: "Comprar Agora",
   },
 
-  taskers: {
+  maners: {
     maria: {
       name: "Maria Rodriguez",
       bio: "Encanadora licenciada especializada em reparos residenciais e comerciais. Tempo de resposta rápido e qualidade garantida.",
@@ -172,9 +172,9 @@ const ptBR: Translations = {
     yesterday: "ontem",
   },
 
-  specialists: {
+  createManers: {
     strings: {
-      specialty: "Especialidade",
+      trade: "Especialidade",
       yearsOfExperience: "Años de Experiência",
       services: "Serviços",
       hourlyRate: "Valor por Hora",
@@ -195,6 +195,14 @@ const ptBR: Translations = {
       whatsapp: "+55 11 91234-5678",
       email: "email@exemplo.com",
     },
+  },
+
+  previewManers: {
+    title: "Visualização Prévia do Perfil do Maner",
+    subtitle:
+      "Revise as informações do seu perfil antes de enviá-lo para verificação.",
+    backButton: "Voltar e Editar",
+    confirmButton: "Confirmar e Enviar",
   },
 };
 
