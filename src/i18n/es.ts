@@ -75,10 +75,13 @@ const es: Translations = {
 
   browse: {
     allManers: "Todos los Maners",
+    browseManers: "Buscar Maners por nombre o especialidad",
+    browseBtnText: "Buscar",
     searchResults: "Resultados de Búsqueda",
     clearFilter: "Limpiar filtro",
     verified: "Verificado",
     perHour: "por hora",
+    minimumHours: "Horas mínimas",
     experience: "experiencia",
     noResults: "No se encontraron Maners",
     noResultsDesc: "Intenta ajustar tu búsqueda o filtros",
@@ -98,6 +101,13 @@ const es: Translations = {
     sendMessage: "Enviar Mensaje",
     recentReviews: "Reseñas Recientes",
     location: "Ubicación",
+  },
+
+  rateType: {
+    hourly: "por hora",
+    fixed: "precio fijo",
+    negotiable: "negociable",
+    minimumHours: "horas mínimas",
   },
 
   ad: {
@@ -188,6 +198,9 @@ const es: Translations = {
     michael: {
       text: "Buena experiencia en general. Contrataría nuevamente para proyectos futuros.",
     },
+    none: {
+      text: "Este Maner aún no tiene reseñas. Sé el primero en dejar una.",
+    },
   },
 
   time: {
@@ -195,6 +208,7 @@ const es: Translations = {
     weeksAgo: "hace {weeks} semana(s)",
     today: "hoy",
     yesterday: "ayer",
+    years: "años",
   },
 
   createManers: {
@@ -228,6 +242,12 @@ const es: Translations = {
       "Revisá la información de tu perfil antes de enviarlo para verificación.",
     backButton: "Volver y Editar",
     confirmButton: "Confirmar y Enviar",
+  },
+
+  general: {
+    currencyCode: "ARS",
+    loading: "Cargando...",
+    error: "Error",
   },
 };
 

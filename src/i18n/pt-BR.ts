@@ -75,10 +75,13 @@ const ptBR: Translations = {
 
   browse: {
     allManers: "Todos os Maners",
+    browseManers: "Buscar Maners por nome ou especialidade",
+    browseBtnText: "Buscar",
     searchResults: "Resultados da Busca",
     clearFilter: "Limpar filtro",
     verified: "Verificado",
     perHour: "por hora",
+    minimumHours: "Horas mínimas",
     experience: "experiência",
     noResults: "Nenhum Maner encontrado",
     noResultsDesc: "Tente ajustar sua busca ou filtros",
@@ -98,6 +101,13 @@ const ptBR: Translations = {
     sendMessage: "Enviar Mensagem",
     recentReviews: "Avaliações Recentes",
     location: "Localização",
+  },
+
+  rateType: {
+    hourly: "por hora",
+    fixed: "preço fixo",
+    negotiable: "negociável",
+    minimumHours: "horas mínimas",
   },
 
   ad: {
@@ -188,6 +198,9 @@ const ptBR: Translations = {
     michael: {
       text: "Boa experiência no geral. Contrataria novamente para projetos futuros.",
     },
+    none: {
+      text: "Este Maner ainda não tem avaliações. Seja o primeiro a deixar uma.",
+    },
   },
 
   time: {
@@ -195,6 +208,7 @@ const ptBR: Translations = {
     weeksAgo: "há {weeks} semana(s)",
     today: "hoje",
     yesterday: "ontem",
+    years: "anos",
   },
 
   createManers: {
@@ -228,6 +242,12 @@ const ptBR: Translations = {
       "Revise as informações do seu perfil antes de enviá-lo para verificação.",
     backButton: "Voltar e Editar",
     confirmButton: "Confirmar e Enviar",
+  },
+
+  general: {
+    currencyCode: "BRL",
+    loading: "Carregando...",
+    error: "Erro",
   },
 };
 

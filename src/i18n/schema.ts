@@ -1,3 +1,4 @@
+import { searchManers } from "../data/maners";
 export interface Translations {
   header: {
     browseManers: string;
@@ -68,10 +69,13 @@ export interface Translations {
 
   browse: {
     allManers: string;
+    browseManers: string;
+    browseBtnText: string;
     searchResults: string;
     clearFilter: string;
     verified: string;
     perHour: string;
+    minimumHours: string;
     experience: string;
     noResults: string;
     noResultsDesc: string;
@@ -91,6 +95,13 @@ export interface Translations {
     sendMessage: string;
     recentReviews: string;
     location: string;
+  };
+
+  rateType: {
+    hourly: string;
+    fixed: string;
+    negotiable: string;
+    minimumHours: string;
   };
 
   ad: {
@@ -151,6 +162,9 @@ export interface Translations {
     michael: {
       text: string;
     };
+    none: {
+      text: string;
+    };
   };
 
   time: {
@@ -158,6 +172,7 @@ export interface Translations {
     weeksAgo: string;
     today: string;
     yesterday: string;
+    years: string;
   };
 
   createManers: {
@@ -190,5 +205,11 @@ export interface Translations {
     subtitle: string;
     backButton: string;
     confirmButton: string;
+  };
+
+  general: {
+    currencyCode: string;
+    loading: string;
+    error: string;
   };
 }

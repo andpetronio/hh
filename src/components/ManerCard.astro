@@ -1,123 +1,173 @@
 ---
-import type { Locale } from "../i18n/locales";
-import type { Translations } from "../i18n/schema";
-import type { TradeId } from "../data/trades";
+import { getTranslations } from "../i18n";
 
 interface Props {
-  id: number;
+  id: string;
   name: string;
-  trade: TradeId;
-  rating: number;
-  reviews: number;
-  hourlyRate: number;
-  location: string;
-  experience: number;
-  verified: boolean;
-  image: string;
-  bio: string;
-  skills: string[];
-  availabilityKey?: keyof Translations["availability"];
-  locale: Locale;
-  t: Translations;
+  tradeLabel: string;
+  locationLabel?: string;
+  rating?: number | null;
+  reviewsCount?: number;
+  rate?: number | null;
+  rateType?: string; // ← AGREGADO para mostrar tipo de tarifa
+  minimumHours?: number | null; // ← AGREGADO para mostrar horas mínimas
+  experienceLabel: string | boolean;
+  verified?: boolean;
+  image?: string;
+  bio?: string;
+  skills?: string[];
+  locale?: string; // ← AGREGADO para traducciones
 }
 
 const {
   id,
   name,
-  trade,
-  rating,
-  reviews,
-  hourlyRate,
-  location,
-  experience,
-  verified,
-  image,
-  bio,
-  skills,
-  availabilityKey,
-  locale,
-  t,
+  tradeLabel,
+  locationLabel = "",
+  rating = null,
+  reviewsCount = 0,
+  rate = null,
+  rateType = "",
+  minimumHours = null,
+  experienceLabel = "",
+  verified = false,
+  image = "👤",
+  bio = "",
+  skills = [],
+  locale = "es",
 } = Astro.props;
+
+const t = getTranslations(locale);
+
+const safeRating =
+  typeof rating === "number" && Number.isFinite(rating) ? rating : null;
+
+const shownSkills = (Array.isArray(skills) ? skills : []).slice(0, 3);
+
+// ✅ REFACTORIZADO: Determinar texto del tipo de tarifa
+const rateTypeLabels = {
+  hourly: t.rateType.hourly,
+  fixed: t.rateType.fixed,
+  negotiable: t.rateType.negotiable,
+};
+
+const rateTypeText = rateTypeLabels[rateType];
+
+const formatedRate =
+  rateType == null
+    ? "A convenir"
+    : new Intl.NumberFormat(locale, {
+        style: "currency",
+        currency: t.general.currencyCode,
+        maximumFractionDigits: 0, // si querés sin centavos
+      }).format(Number(rate));
 ---
 
 <a
   href={`/profile/${id}`}
-  class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-xl hover:border-[#E07A5F] hover:border-2 transition-all group block"
+  class="bg-white rounded-xl overflow-hidden border-2 border-[#E07A5F] hover:shadow-xl transition-all group block"
 >
   <div class="p-6">
-    <div class="flex items-start justify-between mb-4">
-      <div class="flex items-center">
-        <div
-          class="w-16 h-16 bg-gradient-to-br from-[#E07A5F] to-[#F4A261] rounded-full flex items-center justify-center text-3xl"
-        >
-          {image}
-        </div>
-        <div class="ml-4">
-          <h3
-            class="font-bold text-gray-900 text-lg group-hover:text-[#E07A5F] transition-colors"
-          >
-            {name}
-          </h3>
-
-          <div class="flex items-center text-sm text-gray-600 mt-1">
-            {location}
-          </div>
-
-          <div class="text-sm text-gray-500 mt-1">
-            {t.trades[trade]}
-          </div>
-        </div>
+    <!-- Header: Avatar + Info + Badge -->
+    <div class="flex items-start gap-4 mb-4">
+      <!-- Avatar -->
+      <div
+        class="w-20 h-20 bg-gradient-to-br from-[#E07A5F] to-[#F4A261] rounded-full flex items-center justify-center text-4xl shrink-0"
+        aria-hidden="true"
+      >
+        {image}
       </div>
 
+      <!-- Info Column -->
+      <div class="flex-1 min-w-0">
+        <!-- Name (big, coral color) -->
+        <h3
+          class="text-2xl font-bold text-[#E07A5F] mb-1 truncate"
+          title={name}
+        >
+          {name}
+        </h3>
+
+        <!-- Location -->
+        {
+          locationLabel && (
+            <div class="text-base text-gray-600 mb-1">📍 {locationLabel}</div>
+          )
+        }
+
+        <!-- Trade/Oficio -->
+        <div class="text-base text-gray-600">{tradeLabel}</div>
+      </div>
+
+      <!-- Verified Badge -->
       {
         verified && (
-          <div class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
-            {t.browse.verified}
+          <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap">
+            {t.profile.verifiedPro}
           </div>
         )
       }
     </div>
 
-    <div class="flex items-center justify-between mb-3">
-      <div class="flex items-center">
-        <span class="ml-1 font-bold text-gray-900">{rating}</span>
-        <span class="ml-1 text-gray-500 text-sm">({reviews})</span>
+    <!-- Rating + Price Row -->
+    <div class="flex items-start justify-between mb-4">
+      <!-- Rating (left) -->
+      <div class="flex items-center gap-1">
+        {
+          safeRating != null ? (
+            <>
+              <span class="text-2xl font-bold text-gray-900">
+                {safeRating.toFixed(1)}
+              </span>
+              <span class="text-gray-500 text-base">({reviewsCount})</span>
+            </>
+          ) : (
+            <span class="text-gray-500 text-sm">{t.reviews.none.text}</span>
+          )
+        }
       </div>
+
+      <!-- ✅ REFACTORIZADO: Price (right) -->
       <div class="text-right">
-        <div class="text-2xl font-bold text-gray-900">${hourlyRate}</div>
-        <div class="text-xs text-gray-500">{t.browse.perHour}</div>
+        <div class="text-3xl font-bold text-gray-900">{formatedRate}</div>
+        {
+          rateTypeText && (
+            <div class="text-sm text-gray-500">{rateTypeText}</div>
+          )
+        }
+        {
+          rateType === "hourly" && minimumHours != null && (
+            <div class="text-sm text-gray-500">
+              {minimumHours} {t.rateType.minimumHours}
+            </div>
+          )
+        }
       </div>
     </div>
 
-    <p class="text-gray-600 text-sm mb-3 line-clamp-2">{bio}</p>
+    <!-- Bio -->
+    {bio && <p class="text-gray-600 text-base mb-4 line-clamp-2">{bio}</p>}
 
-    <div class="text-sm text-gray-500 mb-3">
-      {experience}
-      {t.browse.experience}
-    </div>
+    <!-- Experience -->
+    {
+      experienceLabel && (
+        <div class="text-base text-gray-600 mb-4">{experienceLabel}</div>
+      )
+    }
 
-    <div class="flex flex-wrap gap-2">
-      {
-        skills
-          .slice(0, 3)
-          .map((skill) => (
-            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium">
+    <!-- Skills -->
+    {
+      shownSkills.length > 0 && (
+        <div class="flex flex-wrap gap-2">
+          {shownSkills.map((skill) => (
+            <span class="bg-gray-100 text-gray-700 px-3 py-1.5 rounded-md text-sm font-medium">
               {skill}
             </span>
-          ))
-      }
-    </div>
-  </div>
-
-  {
-    availabilityKey && (
-      <div class="bg-gray-50 px-6 py-3 border-t border-gray-100">
-        <div class="text-sm text-gray-600">
-          {t.availability[availabilityKey]}
+          ))}
         </div>
-      </div>
-    )
-  }
+      )
+    }
+  </div>
 </a>
 
 <style>

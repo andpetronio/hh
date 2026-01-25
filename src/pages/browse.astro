@@ -1,52 +1,53 @@
 ---
-import type { TradeId } from "../data/trades";
-
 import { getTranslations } from "../i18n";
 import { resolveRequestLocale } from "../i18n/resolveRequestLocale";
 
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
 import ManerCard from "../components/ManerCard.astro";
 import AdBanner from "../components/AdBanner.astro";
 
 import { trades } from "../data/trades";
-import { maners, getManersByTrade, searchManers } from "../data/maners";
+import {
+  getManers,
+  getManersByTrade,
+  searchManers,
+  countManersByTrade,
+} from "../lib/queries/getManers";
 
-// 🌍 idioma
 const locale = resolveRequestLocale(Astro.request);
 const t = getTranslations(locale);
 
-// 🔎 query params
 const url = new URL(Astro.request.url);
 const tradeParam = url.searchParams.get("trade");
 const searchQuery = url.searchParams.get("q");
 
-// 👷‍♂️ resultados
-let filteredManers = maners;
+// Obtener maners según filtros
+let maners = [];
 let title = t.browse.allManers;
 
-// 🔧 filtro por oficio
-if (typeof tradeParam === "string") {
-  const trade = tradeParam as TradeId;
-  filteredManers = getManersByTrade(trade);
-
-  const tr = trades.find((t) => t.id === trade);
+if (searchQuery && searchQuery.trim().length > 0) {
+  // ✅ Búsqueda por texto
+  maners = await searchManers(searchQuery, locale);
+  title = `${t.browse.searchResults}: "${searchQuery}"`;
+} else if (tradeParam) {
+  // ✅ Filtro por trade
+  maners = await getManersByTrade(tradeParam, locale);
+  const tr = trades.find((x) => x.id === tradeParam);
   title = tr ? t.trades[tr.id] : t.browse.allManers;
+} else {
+  // ✅ Todos los maners
+  maners = await getManers(locale);
 }
 
-// 🔍 búsqueda
-else if (typeof searchQuery === "string") {
-  filteredManers = searchManers(searchQuery);
-  title = t.browse.searchResults;
-}
+// Obtener conteos por trade para mostrar en filtros (opcional)
+const tradeCounts = await countManersByTrade();
 ---
 
 <Layout
   title={`${title} - Manify`}
-  description="Encuentra manos hábiles verificados en tu área"
-  locale={locale}
+  description="Encuentra manos hábiles verificadas en tu área"
 >
-  <main class="min-h-screen">
+  <main class="min-h-screen bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
       <!-- Header -->
       <div class="mb-6">
@@ -56,7 +57,7 @@ else if (typeof searchQuery === "string") {
           </h1>
 
           {
-            tradeParam && (
+            (tradeParam || searchQuery) && (
               <a
                 href="/browse"
                 class="text-[#E07A5F] font-medium text-sm hover:underline"
@@ -67,35 +68,65 @@ else if (typeof searchQuery === "string") {
           }
         </div>
 
-        <!-- Filtros -->
+        <!-- Search Bar -->
+        <div class="mb-4">
+          <form action="/browse" method="get" class="flex gap-2">
+            <input
+              type="text"
+              name="q"
+              value={searchQuery || ""}
+              placeholder={t.browse.browseManers}
+              class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E07A5F]"
+            />
+            <button
+              type="submit"
+              class="bg-[#E07A5F] text-white px-6 py-2 rounded-lg font-medium hover:bg-[#d46c51] transition-colors"
+            >
+              {t.browse.browseBtnText}
+            </button>
+          </form>
+        </div>
+
+        <!-- Trade Filters -->
         <div class="overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
           <div class="flex gap-2 flex-wrap">
-            <!-- Ver todos -->
             <a
               href="/browse"
               class:list={[
-                "px-4 py-2 rounded-full font-medium text-sm transition-all",
+                "px-4 py-2 rounded-full font-medium text-sm transition-all whitespace-nowrap",
                 !tradeParam
                   ? "bg-[#E07A5F] text-white"
                   : "bg-white text-gray-700 border border-gray-200 hover:border-[#E07A5F]",
               ]}
             >
               🌍 {t.browse.viewAll}
+              {
+                tradeCounts &&
+                  Object.values(tradeCounts).reduce((a, b) => a + b, 0) > 0 && (
+                    <span class="ml-1 text-xs opacity-75">
+                      ({Object.values(tradeCounts).reduce((a, b) => a + b, 0)})
+                    </span>
+                  )
+              }
             </a>
 
-            <!-- Trades -->
             {
               trades.map((cat) => (
                 <a
                   href={`/browse?trade=${cat.id}`}
                   class:list={[
-                    "px-4 py-2 rounded-full font-medium text-sm transition-all",
+                    "px-4 py-2 rounded-full font-medium text-sm transition-all whitespace-nowrap",
                     tradeParam === cat.id
                       ? "bg-[#E07A5F] text-white"
                       : "bg-white text-gray-700 border border-gray-200 hover:border-[#E07A5F]",
                   ]}
                 >
                   {cat.icon} {t.trades[cat.id]}
+                  {tradeCounts[cat.id] && (
+                    <span class="ml-1 text-xs opacity-75">
+                      ({tradeCounts[cat.id]})
+                    </span>
+                  )}
                 </a>
               ))
             }
@@ -105,33 +136,47 @@ else if (typeof searchQuery === "string") {
 
       <AdBanner t={t} />
 
-      <!-- Cards -->
+      <!-- Results Count -->
+      <div class="mb-4 text-gray-600">
+        {maners.length}
+        {locale === "es" ? "resultados" : "resultados"}
+      </div>
+
+      <!-- Maners Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {
-          filteredManers.map((maner) => (
-            <ManerCard
-              id={maner.id}
-              name={t.maners[maner.nameKey].name}
-              trade={maner.trade}
-              rating={maner.rating}
-              reviews={maner.reviews}
-              hourlyRate={maner.hourlyRate}
-              location={maner.location}
-              experience={maner.experience}
-              verified={maner.verified}
-              image={maner.image}
-              bio={t.maners[maner.nameKey].bio}
-              skills={t.maners[maner.nameKey].skills}
-              locale={locale}
-              t={t}
-            />
-          ))
+          maners.map((m) => {
+            // Construir experienceLabel
+            const experienceLabel =
+              m.experienceYears != null &&
+              `${m.experienceYears} ${t.time.years} de ${t.browse.experience}`;
+
+            return (
+              <ManerCard
+                id={m.id}
+                name={m.name || "Sin nombre"}
+                tradeLabel={m.tradeLabel || ""}
+                locationLabel={m.location || ""}
+                rating={m.rating}
+                reviewsCount={m.reviewsCount}
+                rate={m.rate}
+                rateType={m.rateType || "negotiable"}
+                minimumHours={m.minimumHours}
+                experienceLabel={experienceLabel}
+                verified={m.verified}
+                image={m.avatar ?? "👤"}
+                bio={m.bio ?? ""}
+                skills={m.skills}
+                locale={locale}
+              />
+            );
+          })
         }
       </div>
 
-      <!-- Empty state -->
+      <!-- No Results -->
       {
-        filteredManers.length === 0 && (
+        maners.length === 0 && (
           <div class="text-center py-16">
             <div class="text-6xl mb-4">🔍</div>
             <h3 class="text-2xl font-bold text-gray-900 mb-2">
